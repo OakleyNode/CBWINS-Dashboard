@@ -129,6 +129,10 @@ with sponsors_sect:
                  caption='Oyster Innovation Grant Holder 2023 - 2024')
         st.markdown("---")
 
+        st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/Leonardtown-tagline-Icon_4C.png',
+                 caption='Our host at the Leonardtown Wharf - see the sign!')
+        st.markdown("---")
+
     with r_col:
         st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/FSCB logo.png',
                  caption='Partner and lead organization for the Lovers Point Oyster Restoration site')
