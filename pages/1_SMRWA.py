@@ -6,8 +6,8 @@ page_header = st.container()
 SMRWA_sect = st.container()
 
 with page_header:
-    st.title("St. Mary\'s River Watershed Association")
-    st.subheader("Dashboard of Study Sites")
+    st.title("St. Mary\'s River Watershed Association Dashboard")
+    st.subheader("Location of the 2023 Study Sites")
     st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/SMRWA_Buoy_Locations.jpg',
              caption='BOB locations for the 2023 study season')
     st.markdown("---")
