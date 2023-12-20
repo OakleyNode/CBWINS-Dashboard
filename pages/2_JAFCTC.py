@@ -6,9 +6,9 @@ page_header = st.container()
 JAFCTC_sect = st.container()
 
 with page_header:
-    st.title("The BOBS Project Dashboard")
-    st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/P5_BretonBay.png',
-             caption='Prototype 5 at the Lovers Point Oyster Restoration site in Breton Bay, August 2022')
+    st.title("Forrest Tech Center Dashboard")
+    st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/BOB05prepLtwnWharf(crop).jpg',
+             caption='Getting BOB-05 ready for launch at Leondardtown Wharf, May 19, 2023')
 
 with JAFCTC_sect:
     st.subheader("Dr. J.A. Forrest Career and Technology Center")
