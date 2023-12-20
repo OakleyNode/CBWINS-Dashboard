@@ -2,8 +2,8 @@ import streamlit as st
 # import streamlit.components.v1 as components
 # import pandas as pd
 
-page_header = st.container()
-JAFCTC_sect = st.container()
+page_header = st.container(border=True)
+JAFCTC_sect = st.container(border=True)
 
 with page_header:
     st.title("Forrest Tech Center Dashboard")

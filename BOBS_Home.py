@@ -9,8 +9,7 @@ st.set_page_config(
 
 page_header = st.container(border=True)
 bgrnd_sect = st.container(border=True)
-
-loc_sect = st.container()
+loc_sect = st.container(border=True)
 
 txt_block_1 = '''
 What are BOBs? They are Bay Observation Boxes! BOBs are
@@ -27,6 +26,11 @@ the Calvert Marine Museum, and the Friends of St. Clements Bay.
 
 with page_header:
     st.title("The BOBS Project Dashboard")
+    st.markdown(''':red[
+                **!!! NOTE !!!** While much of this site is accurate, currently this app is only a work in progress
+                 / draft / trial site to test and familiarize ourselves with the Streamlit library and Cloud! Future
+                enhancements will focus on live status of BOBs and data visualizations of water quality.]'''
+                )
     st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/P5_BretonBay.png',
              caption='Prototype 5 at the Lovers Point Oyster Restoration site in Breton Bay, August 2022')
 

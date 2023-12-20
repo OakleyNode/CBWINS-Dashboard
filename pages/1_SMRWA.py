@@ -2,17 +2,22 @@ import streamlit as st
 import streamlit.components.v1 as components
 # import pandas as pd
 
-page_header = st.container()
-SMRWA_sect = st.container()
+page_header = st.container(border=True)
+status_sect = st.container(border=True)
+data2023_sect = st.container(border=True)
 
 with page_header:
     st.title("St. Mary\'s River Watershed Association Dashboard")
     st.subheader("Location of the 2023 Study Sites")
     st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/SMRWA_Buoy_Locations.jpg',
              caption='BOB locations for the 2023 study season')
-    st.markdown("---")
+    st.markdown(":red[Make the picture smaller and add better explanatory text]")
 
-with SMRWA_sect:
+with status_sect:
+    st.subheader('Current BOB Status')
+    st.text('PLACEHOLDER FOR RED/YELLOW/GREEN DASHBOARD OF BOB STATUS')
+
+with data2023_sect:
     st.subheader("Ongoing exploratory analysis of the 2023 data")
     st.markdown('**Sample sensor buoy data (preliminary)**')
     st.markdown(''':blue[The graph below shows salinity data from Sensor Buoy 01 (SB-01) compared to the flow rate of the
