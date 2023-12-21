@@ -10,7 +10,7 @@ TS_SM_sect = st.container(border=True)
 
 with page_header:
     st.title("Links to the Live Data and more!")
-    st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/ThingSpeakHumdityGraph.png',
+    st.image('/images/ThingSpeakHumdityGraph.png',
              caption='Graph of Humidity from ThingSpeak')
     st.markdown('''
                 :red[BOB data is routed to public channels hosted by [ThingSpeak](https://thingspeak.com).
