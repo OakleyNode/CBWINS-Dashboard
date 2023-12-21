@@ -31,7 +31,7 @@ with page_header:
                  / draft / trial site to test and familiarize ourselves with the Streamlit library and Cloud! Future
                 enhancements will focus on live status of BOBs and data visualizations of water quality.]'''
                 )
-    st.image('P5_BretonBay.png',
+    st.image('OakleyNode/CBWINS-Dashboard-Test/blob/main/images/P5_BretonBay.png',
              caption='Prototype 5 at the Lovers Point Oyster Restoration site in Breton Bay, August 2022')
 
     st.markdown('### The BOBS project seeks to engage students and the general public ' +
