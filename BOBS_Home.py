@@ -48,7 +48,7 @@ with bgrnd_sect:
     st.text('PAST, PRESENT and FUTURE')
 
     # ***** LOCATIONS MAP *****
-    locations = pd.read_csv('/data/LocationsLatLong.csv')
+    locations = pd.read_csv('data/LocationsLatLong.csv')
     st.dataframe(locations, hide_index=True)
     st.map(locations, use_container_width=True)
     st.caption('Map of BOBS (Bay Observation Boxes) in Southern Maryland')

@@ -13,18 +13,18 @@ with funding_sect:
     # logos
     st.subheader(':red[Funding was generously provided by]')
 
-    st.image('/images/CBTRUST-CoBranding-Horizontal-Logo-SCREEN.png',
+    st.image('images/CBTRUST-CoBranding-Horizontal-Logo-SCREEN.png',
              caption='Funding for the 22-23 and 23-24 MWEE Grants')
     st.markdown("---")
 
-    st.image('/images/Chesapeake_Oyster_Alliance_PNG.png',
+    st.image('images/Chesapeake_Oyster_Alliance_PNG.png',
              caption='Funding for the 22-23 and 23-24 Oyster Innovation Grants')
 
 with smrwa_sect:
     l_col, r_col = st.columns(2)
     with l_col:
         st.subheader(':blue[Grant Holder]')
-        st.image('/images/logo_SMRWA_color_trans275.gif',
+        st.image('images/logo_SMRWA_color_trans275.gif',
                  caption='Oyster Innovation Grants in 2023 and in 2024')
     with r_col:
         st.markdown('''
@@ -41,8 +41,8 @@ with JAFCTC_sect:
     l_col, r_col = st.columns(2)
     with l_col:
         st.subheader(':blue[Grant Holder]')
-        st.image('/images/Logo-ForrestTechCenter.jpg')
-        st.image('/images/StMarysCountyPublicSchools-LOGO.png',
+        st.image('images/Logo-ForrestTechCenter.jpg')
+        st.image('images/StMarysCountyPublicSchools-LOGO.png',
                  caption='Youth Education (MWEE) Grants in the 2022 - 2023 and the 2023 - 2024 school years')
     with r_col:
         st.markdown('''
@@ -58,8 +58,8 @@ with JAFCTC_sect:
         ''')
 
 with sponsors_sect2:
-    st.image('/images/Leonardtown-tagline-Icon_4C.png',
+    st.image('images/Leonardtown-tagline-Icon_4C.png',
              caption='Our host at the Leonardtown Wharf - see the sign!')
 
-    st.image('/images/FSCB logo.png',
+    st.image('images/FSCB logo.png',
              caption='Partner and lead organization for the Lovers Point Oyster Restoration site')

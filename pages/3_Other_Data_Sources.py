@@ -6,7 +6,7 @@ page_header = st.container()
 bgrnd_sect = st.container()
 
 macrun_precip = pd.read_csv(
-    "/data/MacRunPrecipMonthly2023.csv"
+    "data/MacRunPrecipMonthly2023.csv"
 )
 fig = px.histogram(
     macrun_precip,
