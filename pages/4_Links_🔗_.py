@@ -32,8 +32,8 @@ with TS_FT_sect:
 
 with TS_SM_sect:
     st.subheader("ThingSpeak Channels ::: St. Mary\'s River BOBs")
-    st.markdown('[SB-01](https://thingspeak.com/channels/2062275)')
-    st.markdown('[SB-02](https://thingspeak.com/channels/2062275)')
-    st.markdown('[SB-03](https://thingspeak.com/channels/2062275)')
-    st.markdown('[SB-04](https://thingspeak.com/channels/2062275)')
+    st.markdown('[SB-01](https://thingspeak.com/channels/2188765)')
+    st.markdown('[SB-02](https://thingspeak.com/channels/2188768)')
+    st.markdown('[SB-03](https://thingspeak.com/channels/2188771)')
+    st.markdown('[SB-04](https://thingspeak.com/channels/2188776)')
     st.markdown('[SB-05](https://thingspeak.com/channels/2256155)')
