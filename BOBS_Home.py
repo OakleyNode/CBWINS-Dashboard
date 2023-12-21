@@ -31,7 +31,7 @@ with page_header:
                  / draft / trial site to test and familiarize ourselves with the Streamlit library and Cloud! Future
                 enhancements will focus on live status of BOBs and data visualizations of water quality.]'''
                 )
-    st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/P5_BretonBay.png',
+    st.image('/images/P5_BretonBay.png',
              caption='Prototype 5 at the Lovers Point Oyster Restoration site in Breton Bay, August 2022')
 
     st.markdown('### The BOBS project seeks to engage students and the general public ' +
@@ -48,7 +48,7 @@ with bgrnd_sect:
     st.text('PAST, PRESENT and FUTURE')
 
     # ***** LOCATIONS MAP *****
-    locations = pd.read_csv('/Users/normoforan/SynologyDrive/DATA/LocationsLatLong.csv')
+    locations = pd.read_csv('/data/LocationsLatLong.csv')
     st.dataframe(locations, hide_index=True)
     st.map(locations, use_container_width=True)
     st.caption('Map of BOBS (Bay Observation Boxes) in Southern Maryland')

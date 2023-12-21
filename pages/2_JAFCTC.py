@@ -7,7 +7,7 @@ JAFCTC_sect = st.container(border=True)
 
 with page_header:
     st.title("Forrest Tech Center Dashboard")
-    st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/BOB05prepLtwnWharf(crop).jpg',
+    st.image('/images/BOB05prepLtwnWharf(crop).jpg',
              caption='Getting BOB-05 ready for launch at Leondardtown Wharf, May 19, 2023')
 
 with JAFCTC_sect:

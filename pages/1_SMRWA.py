@@ -9,7 +9,7 @@ data2023_sect = st.container(border=True)
 with page_header:
     st.title("St. Mary\'s River Watershed Association Dashboard")
     st.subheader("Location of the 2023 Study Sites")
-    st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/SMRWA_Buoy_Locations.jpg',
+    st.image('/images/SMRWA_Buoy_Locations.jpg',
              caption='BOB locations for the 2023 study season')
     st.markdown(":red[Make the picture smaller and add better explanatory text]")
 
@@ -25,7 +25,7 @@ with data2023_sect:
                 data is from SB-01 as reported to ThingSpeak from 20 June to 03 October 2023. Flow rate values are divided
                 by 10 to bring them into the same range of Salinity for ease of comparison.]''')
 
-    salSB01xFR = open("/Users/normoforan/SynologyDrive/StreamlitPICS/SMRWA_2023_SB01_SalinityHMxFlowRateSM.html",
+    salSB01xFR = open("/images/SMRWA_2023_SB01_SalinityHMxFlowRateSM.html",
                       'r', encoding='utf-8')
     source_code = salSB01xFR.read()
     components.html(source_code, height=400)
