@@ -11,7 +11,7 @@ with page_header:
     st.subheader("Location of the 2023 Study Sites")
     st.image('images/SMRWA_Buoy_Locations.jpg',
              caption='BOB locations for the 2023 study season')
-    st.markdown(":red[Make the picture smaller and add better explanatory text]")
+    # st.markdown(":red[Make the picture smaller and add better explanatory text]")
 
 with status_sect:
     st.subheader('Current BOB Status')
