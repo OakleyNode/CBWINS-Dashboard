@@ -24,3 +24,9 @@ with JAFCTC_sect:
         st.text('RIGHT COLUMN TEXT')
         st.markdown("---")
     st.markdown("---")
+
+# Adds a selectbox to the sidebar:
+add_selectbox = st.sidebar.selectbox(
+    'Select a BOB to see its data(future feature)',
+    ('BOB-01', 'BOB-02', 'BOB-03', 'BOB-04', 'BOB-05', 'BOB-06', 'BOB-07', 'BOB-08',
+        'BOB-09', 'BOB-10', 'BOB-11')

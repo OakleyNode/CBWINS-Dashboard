@@ -33,12 +33,4 @@ with data2023_sect:
     st.markdown("---")
 
 st.sidebar.markdown('Some explanatory sidebar text that goes on for awhile... blah blah')
-
-# Add a selectbox to the sidebar:
-add_selectbox = st.sidebar.selectbox(
-    'Select a BOB to see its data(future feature)',
-    ('BOB-01', 'BOB-02', 'BOB-03', 'BOB-04', 'BOB-05', 'BOB-06', 'BOB-07', 'BOB-08',
-        'BOB-09', 'BOB-10', 'BOB-11')
-)
-
 st.sidebar.checkbox('This is an awesome feature -- check me!!')
