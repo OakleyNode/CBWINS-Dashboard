@@ -29,8 +29,10 @@ with page_header:
 
     st.markdown('### The BOBS project seeks to engage students and the general public ' +
                 'to increase awareness of water quality issues.')
-    st.markdown('**:red["Our species needs, and deserves, a citizenry with minds wide awake and a basic understanding of how the world works." -- Carl Sagan]**')
-    st.markdown('**:blue[Paraphrasing Thomas Jefferson, "Whenever the people are well-informed, they can be trusted with the governance of their own ecosystems."]**')
+    st.markdown('''**:red["Our species needs, and deserves, a citizenry with minds wide awake and a basic understanding of
+                how the world works." -- Carl Sagan]**''')
+    st.markdown('''**:blue[Paraphrasing Thomas Jefferson, "Whenever the people are well-informed, they can be trusted with the
+                governance of their own ecosystems."]**''')
     txt_block_1
     st.markdown("---")
     st.markdown('**Past, Present and Future locations of BOBs in Southern Maryland...**')
@@ -102,12 +104,13 @@ with JAFCTC_sect:
 with SMRWA_sect:
     st.subheader("St. Mary's River Watershed Association")
     st.markdown('**Sample sensor buoy data (preliminary)**')
-    st.markdown(':blue[The graph below shows salinity data from Sensor Buoy 01 (SB-01) compared to the flow rate of St. Mary\'s River. ' +
-                'River flow rate data comes from the USGS station ID 01661500 at Great Mills. Salinity data is from SB-01 as reported ' +
-                'to ThingSpeak from 20 June to 03 October 2023. Flow rate values are divided ' +
-                'by 10 to bring them into the same range of Salinity for ease of comparison.]')
+    st.markdown(''':blue[The graph below shows salinity data from Sensor Buoy 01 (SB-01) compared to the flow rate of the
+                St. Mary\'s River. The river flow rate data comes from the USGS station ID 01661500 at Great Mills. Salinity data
+                is from SB-01 as reported to ThingSpeak from 20 June to 03 October 2023. Flow rate values are divided 10 to bring
+                them into the same range of Salinity for ease of comparison.]''')
 
-    salSB01xFR = open("/Users/normoforan/SynologyDrive/StreamlitPICS/SMRWA_2023_SB01_SalinityHMxFlowRateSM.html", 'r', encoding='utf-8')
+    salSB01xFR = open("/Users/normoforan/SynologyDrive/StreamlitPICS/SMRWA_2023_SB01_SalinityHMxFlowRateSM.html",
+                      'r', encoding='utf-8')
     source_code = salSB01xFR.read()
     components.html(source_code, height=400)
 
@@ -120,7 +123,7 @@ with sponsors_sect:
              caption='Funding for the 22-23 and 23-24 MWEE Grants')
     st.markdown("---")
 
-    l_col, m_col, r_col = st.columns([2, 2, 1])     # appears that the position of the col variable in the list determines its position
+    l_col, m_col, r_col = st.columns([2, 2, 1])  # the position of the col variable in the list determines its position (?)
     with l_col:
         st.image('/Users/normoforan/SynologyDrive/StreamlitPICS/logo_SMRWA_color_trans275.gif',
                  caption='Oyster Innovation Grant Holder 2023 - 2024')
@@ -137,5 +140,3 @@ with sponsors_sect:
         st.markdown("---")
 
     st.markdown("---")  # End of section
-    # last line
-    
