@@ -51,4 +51,4 @@ with bgrnd_sect:
     locations = pd.read_csv('data/LocationsLatLong.csv')
     st.dataframe(locations, hide_index=True)
     st.map(locations, use_container_width=True)
-    st.caption('Map of BOBS (Bay Observation Boxes) in Southern Maryland')
+    st.caption('Map of BOBS (Bay Observation Boxes) in Southern Maryland - Past, Present, and Future')
