@@ -19,7 +19,7 @@ with page_header:
     # The following code embeds the entire page.........
     # components.iframe("https://thingspeak.com/channels/1329419", width=None, height=600, scrolling=True)
     # The following code embed a single chart field.........
-    st.markdown('<b>Live DO feed from the Floating Marsh -- BOB-08</b>')
+    st.markdown('**Live DO feed from the Floating Marsh -- BOB-08**')
     st.components.v1.html(html, height=300, scrolling=False)
     st.markdown('''
                 :red[BOB data is routed to public channels hosted by [ThingSpeak](https://thingspeak.com).
