@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
+html = '<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1329419/widgets/300436"></iframe>'
 
 st.set_page_config(
     page_title="LINKS!",
@@ -15,7 +16,7 @@ with page_header:
              caption='Graph of Humidity from ThingSpeak')
     # The following code works to embed the entire page.........
     # components.iframe("https://thingspeak.com/channels/1329419", width=None, height=600, scrolling=True)
-    st.components.v1.html('''<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1329419/charts/300436"></iframe>''', width=None, height=None, scrolling=False)
+    st.components.v1.html(html, scrolling=True)
     st.markdown('''
                 :red[BOB data is routed to public channels hosted by [ThingSpeak](https://thingspeak.com).
                  ThingSpeak is an IoT analytics platform service that allows you to aggregate, visualize,
