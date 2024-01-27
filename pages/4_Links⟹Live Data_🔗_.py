@@ -1,6 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
-html = '<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1329419/widgets/300436"></iframe>'
+html = '<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1329419/charts/1?bgcolor=%23ffffff&color=%23d62020&days=3&dynamic=true&max=90&title=Air+Temperature+%28DHT22%29&type=line&xaxis=%E2%AC%85%EF%B8%8F+++++....................+++++Past+3+Days++++++....................+++++%E2%9E%A1%EF%B8%8F&yaxis=%C2%B0+Celsius"></iframe>'
 
 st.set_page_config(
     page_title="LINKS!",
