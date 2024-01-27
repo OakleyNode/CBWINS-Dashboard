@@ -13,7 +13,9 @@ with page_header:
     st.title("Links to the Live Data and more!")
     st.image('images/ThingSpeakHumdityGraph.png',
              caption='Graph of Humidity from ThingSpeak')
-    components.iframe("https://thingspeak.com/channels/1329419", width=None, height=600, scrolling=True)
+    # The following code works to embed the entire page.........
+    # components.iframe("https://thingspeak.com/channels/1329419", width=None, height=600, scrolling=True)
+    st.components.v1.html('''<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1329419/charts/300436"></iframe>''', width=None, height=None, scrolling=False)
     st.markdown('''
                 :red[BOB data is routed to public channels hosted by [ThingSpeak](https://thingspeak.com).
                  ThingSpeak is an IoT analytics platform service that allows you to aggregate, visualize,
