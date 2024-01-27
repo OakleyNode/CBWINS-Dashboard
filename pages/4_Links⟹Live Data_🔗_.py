@@ -1,6 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
-html = '<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2402453/charts/4?bgcolor=%23ffffff&color=%23d62020&days=4&max=20&title=Dissolved+Oxygen+%28DO%29+--+BOB-08&update=15&xaxis=%E2%96%B2.........................+++++Last+4+days++++++............................%E2%96%B2&yaxis=mg+%2F+l"></iframe>'
+html = '''<iframe width="450" height="260" style="border: 1px solid #cccccc;"
+        src="https://thingspeak.com/channels/2402453/charts/4?bgcolor=%23ffffff&color=%23d62020&days=4&max=20&title=Dissolved+Oxygen+%28DO%29+--+BOB-08&update=15&xaxis=%E2%96%B2.........................+++++Last+4+days++++++............................%E2%96%B2&yaxis=mg+%2F+l">
+        </iframe>'''
 
 st.set_page_config(
     page_title="LINKS!",
@@ -14,8 +16,10 @@ with page_header:
     st.title("Links to the Live Data and more!")
     st.image('images/ThingSpeakHumdityGraph.png',
              caption='Graph of Humidity from ThingSpeak')
-    # The following code works to embed the entire page.........
+    # The following code embeds the entire page.........
     # components.iframe("https://thingspeak.com/channels/1329419", width=None, height=600, scrolling=True)
+    # The following code embed a single chart field.........
+    st.markdown('<b>Live DO feed from the Floating Marsh -- BOB-08</b>')
     st.components.v1.html(html, height=300, scrolling=False)
     st.markdown('''
                 :red[BOB data is routed to public channels hosted by [ThingSpeak](https://thingspeak.com).
