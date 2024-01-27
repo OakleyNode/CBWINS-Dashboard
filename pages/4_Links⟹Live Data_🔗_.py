@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="LINKS!",
@@ -12,6 +13,7 @@ with page_header:
     st.title("Links to the Live Data and more!")
     st.image('images/ThingSpeakHumdityGraph.png',
              caption='Graph of Humidity from ThingSpeak')
+    components.iframe("https://thingspeak.com/channels/1329419")
     st.markdown('''
                 :red[BOB data is routed to public channels hosted by [ThingSpeak](https://thingspeak.com).
                  ThingSpeak is an IoT analytics platform service that allows you to aggregate, visualize,
