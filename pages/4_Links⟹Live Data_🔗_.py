@@ -16,7 +16,7 @@ with page_header:
              caption='Graph of Humidity from ThingSpeak')
     # The following code works to embed the entire page.........
     # components.iframe("https://thingspeak.com/channels/1329419", width=None, height=600, scrolling=True)
-    st.components.v1.html(html, height=400, scrolling=True)
+    st.components.v1.html(html, height=300, scrolling=False)
     st.markdown('''
                 :red[BOB data is routed to public channels hosted by [ThingSpeak](https://thingspeak.com).
                  ThingSpeak is an IoT analytics platform service that allows you to aggregate, visualize,
