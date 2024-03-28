@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-html = '''<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+html = '''<iframe width="450" height="260" style="border: 1px solid #cccccc;"
 src="https://thingspeak.com/channels/2402453/widgets/790333"></iframe>'''
 
 st.set_page_config(
