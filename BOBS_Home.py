@@ -295,8 +295,9 @@ with bgrnd_sect:
     st.dataframe(locations, hide_index=True)
     st.map(locations, use_container_width=True)
     st.caption("Map of BOBS (Bay Observation Boxes) in Southern Maryland")
+    st.text("Refresh the page or use full screen if locations are not immediately apparent.")
 
 with status_sect:
     st.subheader("Current BOB Status")
     st.dataframe(status)  # Same as st.write(df)
-    st.text("Refresh the page or use full screen if locations are not immediately apparent.")
+    st.text("Most BOBs are offline for refurbishment for the coming monitoring season.")
