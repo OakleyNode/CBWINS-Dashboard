@@ -1,4 +1,4 @@
-## CBWINS First Test Dashboard
+## CBWINS Dashboard
 
 ### **This repo was created to practice (a) coding with Streamlit, (b) using Github and (c) to produce a trial web app layout with some potential content.**
 
