@@ -300,4 +300,4 @@ with bgrnd_sect:
 with status_sect:
     st.subheader("Current BOB Status")
     st.dataframe(status)  # Same as st.write(df)
-    st.text("Most BOBs are offline for refurbishment for the coming monitoring season.")
+    st.text("During the winter months, most BOBs are offline for refurbishment for the coming monitoring season.")
