@@ -12,8 +12,8 @@ with page_header:
 
 with JAFCTC_sect:
     st.subheader("Dr. J.A. Forrest Career and Technology Center")
-    st.markdown('Our JAFCTC BOBS are soon to be in year 2 of operation and pretty soon we\'ll be ' +
-                'building BOB 2.0 -- our new and improved BOB.')
+    st.markdown('Our JAFCTC BOBS are soon to be in year 3 of operation and pretty soon we\'ll be ' +
+                'building BOB 3.0 -- our newest and improved BOB.')
     l_col, r_col = st.columns(2)
     with l_col:
         st.subheader('LEFT COLUMN SUBHEADER')
