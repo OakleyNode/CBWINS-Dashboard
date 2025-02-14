@@ -34,6 +34,6 @@ with data2023_sect:
 
 st.sidebar.markdown('''SMRWA received an Oyster Innovation Grant from the Chesapeake Oyster Alliance in 2023. Five
                     BOBs were deployed that season. A second year of the grant was awarded for 2024. Three additional
-                    BOBs will be built and placed in locations that will also be monitored periodically via handheld
+                    BOBs were built and placed in locations that will also be monitored periodically via handheld
                     multiparameter YSI units. In this way the accuracy of the BOBs can be characterized.''')
 # st.sidebar.checkbox('This is an awesome feature -- check me!!')
