@@ -10,6 +10,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import requests
+import json
+from pathlib import Path
 from abc import ABC, abstractmethod
 
 st.set_page_config(
@@ -51,6 +53,7 @@ class ThingSpeakAPICaller(_APICaller):
         df : pd.DataFrame
             Table containing the fetched data. Columns are "Timestamp",
             "entry_id", and any other fields available when the data was fetched.
+            Returns None if the channel is inaccessible or returns an error.
 
         Note
         ----
@@ -65,21 +68,41 @@ class ThingSpeakAPICaller(_APICaller):
             f"https://api.thingspeak.com/"
             f"channels/{channel_id}/feeds.json?{custom_query}"
         )
-        query = requests.get(get_url).json()
 
-        # get descriptive field names
-        field_names = cls._get_field_names(query)
+        try:
+            response = requests.get(get_url)
+            response.raise_for_status()  # Raise error for bad status codes
+            query = response.json()
 
-        # rename column names
-        results_df = pd.DataFrame(query["feeds"]).rename(columns=field_names)
+            # Check if the response has the expected structure
+            if "channel" not in query:
+                print(f"Warning: Channel {channel_id} returned invalid response (no 'channel' key)")
+                return None
 
-        # convert data type from str to float for all fields
-        df = results_df[list(field_names.values())].astype(float)
+            if "feeds" not in query or not query["feeds"]:
+                print(f"Warning: Channel {channel_id} has no data feeds")
+                return None
 
-        # insert at the beginning a column of timestamps
-        df.insert(0, "Timestamp", results_df["created_at"].apply(pd.Timestamp))
+            # get descriptive field names
+            field_names = cls._get_field_names(query)
 
-        return df
+            # rename column names
+            results_df = pd.DataFrame(query["feeds"]).rename(columns=field_names)
+
+            # convert data type from str to float for all fields
+            df = results_df[list(field_names.values())].astype(float)
+
+            # insert at the beginning a column of timestamps
+            df.insert(0, "Timestamp", results_df["created_at"].apply(pd.Timestamp))
+
+            return df
+
+        except requests.exceptions.RequestException as e:
+            print(f"Warning: Failed to fetch channel {channel_id}: {e}")
+            return None
+        except (KeyError, ValueError) as e:
+            print(f"Warning: Error parsing data from channel {channel_id}: {e}")
+            return None
 
     @staticmethod
     def _get_field_names(query):
@@ -141,9 +164,9 @@ class USGSAPICaller(_APICaller):
         table = []
         for k in range(n_fields):
             # get the field name + units
-            #   - variableName has units, but in unicode
-            #   - take only name from variableName (split)
-            #   - take units from unitCode and add to field name
+            #   - variableName has units, but in unicode
+            #   - take only name from variableName (split)
+            #   - take units from unitCode and add to field name
             field_name = time_series[k]["variable"]["variableName"].split(",")[0]
             field_units = time_series[k]["variable"]["unit"]["unitCode"]
             field_name += f" ({field_units})"
@@ -165,38 +188,36 @@ class USGSAPICaller(_APICaller):
         return table
 
 
-def assign_project_to_bob(bob_names):
-    labels = {"BOB": "JAFCTC", "SB": "SMRWA"}
-    res = ["CBWINS"] * len(bob_names)
-    for k, name in enumerate(bob_names):
-        for key, value in labels.items():
-            if name.find(key) != -1:
-                res[k] = value
-                break
-    return [[n, r] for n, r in zip(bob_names, res)]
+def load_channel_config():
+    """Load channel configuration from JSON file."""
+    config_path = Path(__file__).parent / "config" / "channels.json"
+    with open(config_path, 'r') as f:
+        config = json.load(f)
+    return config['channels']
 
 
-TS_channel_IDs = {
-    "1329419": "Prototype-5b",
-    "1650300": "BOB-07",
-    "1807956": "BOB-05",
-    "1948145": "Prototype-4",
-    "2062276": "BOB-02",
-    "2062277": "BOB-03",
-    "2062279": "BOB-04",
-    "2188765": "SB-01",
-    "2188768": "SB-02",
-    "2188771": "SB-03",
-    "2188776": "SB-04",
-    "2256155": "SB-05",
-    "2475657": "Prototype-7a",
-    "2490682": "BOB-09",
-}
+def format_channel_display_name(device_name, channel_type):
+    """Format the display name based on channel type."""
+    if channel_type == "primary":
+        return f"{device_name} - Primary"
+    elif channel_type == "secondary":
+        return f"{device_name} - Secondary"
+    else:
+        return device_name
+
+
+# Load channel configuration from JSON file
+channel_config = load_channel_config()
+
+# Create channel_ids dictionary with display names and owners
+# Format: {channel_id: [display_name, owner]}
 channel_ids = {
-    k: v
-    for k, v in zip(
-        TS_channel_IDs.keys(), assign_project_to_bob(list(TS_channel_IDs.values()))
-    )
+    channel_id: [
+        format_channel_display_name(info['device_name'], info['channel_type']),
+        info['owner']
+    ]
+    for channel_id, info in channel_config.items()
+    if info['status'] == 'active'
 }
 
 
@@ -227,12 +248,28 @@ col_names = [
     "Time since last TX",
     "Voltage",
 ]
-result = pd.concat(
-    [ThingSpeakAPICaller.get(id, {"results": 1}) for id in channel_ids.keys()]
-).set_index(pd.Index(channel_ids.keys()))
+
+# Fetch data from ThingSpeak, filtering out failed channels
+channel_data = {}
+for channel_id in channel_ids.keys():
+    data = ThingSpeakAPICaller.get(channel_id, {"results": 1})
+    if data is not None:
+        channel_data[channel_id] = data
+    else:
+        print(f"Skipping channel {channel_id} - no data available")
+
+# Only proceed if we have at least one successful channel
+if not channel_data:
+    st.error("Unable to fetch data from any ThingSpeak channels. Please check your configuration.")
+    st.stop()
+
+# Combine successful channel data
+result = pd.concat(channel_data.values()).set_index(pd.Index(channel_data.keys()))
 keep = result.columns[np.array([col.find("oltage") for col in result.columns]) != -1]
 status = result[["Timestamp"]].reset_index(names="channel id")
-status[["bob name", "project"]] = list(channel_ids.values())
+
+# Only include channel info for successfully fetched channels
+status[["bob name", "project"]] = [channel_ids[ch_id] for ch_id in channel_data.keys()]
 status["offset"] = [
     (pd.Timestamp.now(tz="UTC") - t).round(freq="min") for t in status["Timestamp"]
 ]

@@ -32,6 +32,7 @@ class ThingSpeakAPICaller(_APICaller):
         df : pd.DataFrame
             Table containing the fetched data. Columns are "Timestamp",
             "entry_id", and any other fields available when the data was fetched.
+            Returns None if the channel is inaccessible or returns an error.
 
         Note
         ----
@@ -46,21 +47,41 @@ class ThingSpeakAPICaller(_APICaller):
             f"https://api.thingspeak.com/"
             f"channels/{channel_id}/feeds.json?{custom_query}"
         )
-        query = requests.get(get_url).json()
 
-        # get descriptive field names
-        field_names = cls._get_field_names(query)
+        try:
+            response = requests.get(get_url)
+            response.raise_for_status()  # Raise error for bad status codes
+            query = response.json()
 
-        # rename column names
-        results_df = pd.DataFrame(query["feeds"]).rename(columns=field_names)
+            # Check if the response has the expected structure
+            if "channel" not in query:
+                print(f"Warning: Channel {channel_id} returned invalid response (no 'channel' key)")
+                return None
 
-        # convert data type from str to float for all fields
-        df = results_df[list(field_names.values())].astype(float)
+            if "feeds" not in query or not query["feeds"]:
+                print(f"Warning: Channel {channel_id} has no data feeds")
+                return None
 
-        # insert at the beginning a column of timestamps
-        df.insert(0, "Timestamp", results_df["created_at"].apply(pd.Timestamp))
+            # get descriptive field names
+            field_names = cls._get_field_names(query)
 
-        return df
+            # rename column names
+            results_df = pd.DataFrame(query["feeds"]).rename(columns=field_names)
+
+            # convert data type from str to float for all fields
+            df = results_df[list(field_names.values())].astype(float)
+
+            # insert at the beginning a column of timestamps
+            df.insert(0, "Timestamp", results_df["created_at"].apply(pd.Timestamp))
+
+            return df
+
+        except requests.exceptions.RequestException as e:
+            print(f"Warning: Failed to fetch channel {channel_id}: {e}")
+            return None
+        except (KeyError, ValueError) as e:
+            print(f"Warning: Error parsing data from channel {channel_id}: {e}")
+            return None
 
     @staticmethod
     def _get_field_names(query):
@@ -122,9 +143,9 @@ class USGSAPICaller(_APICaller):
         table = []
         for k in range(n_fields):
             # get the field name + units
-            #   - variableName has units, but in unicode
-            #   - take only name from variableName (split)
-            #   - take units from unitCode and add to field name
+            #   - variableName has units, but in unicode
+            #   - take only name from variableName (split)
+            #   - take units from unitCode and add to field name
             field_name = time_series[k]["variable"]["variableName"].split(",")[0]
             field_units = time_series[k]["variable"]["unit"]["unitCode"]
             field_name += f" ({field_units})"
